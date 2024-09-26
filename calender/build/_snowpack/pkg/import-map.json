@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "date-fns": "./date-fns.js",
+    "uuid": "./uuid.js"
+  }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" type="module" defer></script>
+    <title>Calendar</title>
+  </head>
+  <body>
+    <div class="calendar">
+      <div class="calendar-controls">
+        <button class="dark-mode-toggle">Toggle Dark Mode</button>
+        <div class="view-switcher">
+          <button data-view="month" class="active">Month</button>
+          <button data-view="week">Week</button>
+          <button data-view="day">Day</button>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search events..." />
+        </div>
+      </div>
+      <div class="search-results"></div>
+      <div class="header">
+        <button class="btn" data-today-btn>Today</button>
+        <div>
+          <button class="month-change-btn" data-prev-month-btn>&lt;</button>
+          <button class="month-change-btn" data-next-month-btn>&gt;</button>
+        </div>
+        <span class="month-title" data-month-title></span>
+      </div>
+      <div class="days" data-calendar-days></div>
+    </div>
+
+    <div class="modal" data-modal>
+      <div class="overlay" data-overlay></div>
+      <button class="close-btn" data-close-btn>&times;</button>
+      <div class="modal-body" data-modal-body></div>
+    </div>
+
+    <template id="view-all-events-template">
+      <div class="modal-title" data-title>4/8/21</div>
+    </template>
+
+    <template id="event-form-template">
+      <div class="modal-title">
+        <!-- <button class="close-btn" data-close-btn>&times;</button> -->
+        <div data-title></div>
+        <small data-date></small>
+      </div>
+      <form data-form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" data-name required />
+        </div>
+        <div class="form-group checkbox">
+          <input type="checkbox" name="all-day" id="all-day" data-all-day />
+          <label for="all-day">All Day?</label>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="start-time">Start Time</label>
+            <input
+              type="time"
+              name="start-time"
+              id="start-time"
+              data-start-time
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="end-time">End Time</label>
+            <input
+              type="time"
+              name="end-time"
+              id="end-time"
+              data-end-time
+              required
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <div class="row left">
+            <input
+              type="radio"
+              name="color"
+              value="blue"
+              id="blue"
+              checked
+              class="color-radio"
+              data-color
+            />
+            <label for="blue"><span class="sr-only">Blue</span></label>
+            <input
+              type="radio"
+              name="color"
+              value="red"
+              id="red"
+              class="color-radio"
+              data-color
+            />
+            <label for="red"><span class="sr-only">Red</span></label>
+            <input
+              type="radio"
+              name="color"
+              value="green"
+              id="green"
+              class="color-radio"
+              data-color
+            />
+            <label for="green"><span class="sr-only">Green</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-success" type="submit" data-save-btn></button>
+          <button class="btn btn-delete" type="button" data-delete-btn>
+            Delete
+          </button>
+        </div>
+      </form>
+    </template>
+
+    <template id="day-template">
+      <div class="day" data-date-wrapper>
+        <div class="day-header">
+          <div class="week-name" data-week-name></div>
+          <div class="day-number" data-day-number></div>
+          <button class="add-event-btn" data-add-event-btn>+</button>
+        </div>
+        <div class="events" data-event-container></div>
+        <button class="events-view-more-btn" data-view-more-btn>
+          <svg
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-eye"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 3c-4.5 0-8 3.5-8 6s3.5 6 8 6 8-3.5 8-6-3.5-6-8-6zm0 10.5c-2.7 0-5-2.3-5-4.5S5.3 4.5 8 4.5s5 2.3 5 4.5-2.3 4.5-5 4.5z"
+            />
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" />
+          </svg>
+        </button>
+      </div>
+    </template>
+
+    <template id="all-day-event-template">
+      <button class="all-day-event event" data-event>
+        <div class="event-name" data-name></div>
+      </button>
+    </template>
+
+    <template id="timed-event-template">
+      <button class="event" data-event>
+        <div class="color-dot" data-color></div>
+        <div class="event-time" data-time></div>
+        <div class="event-name" data-name></div>
+      </button>
+    </template>
+  </body>
+</html>
