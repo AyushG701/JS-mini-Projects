@@ -1,4 +1,5 @@
-* {
+/* * 
+{
   box-sizing: border-box;
 }
 
@@ -57,4 +58,67 @@ body {
 
 .board > [data-status="marked"] {
   background-color: yellow;
+} */
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.subtext {
+  margin-bottom: 10px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--size), 30px);
+  grid-template-rows: repeat(var(--size), 30px);
+  gap: 1px;
+  background-color: #bdbdbd;
+  border: 2px solid #7b7b7b;
+}
+
+.board > * {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: 2px solid;
+  border-color: #fff #7b7b7b #7b7b7b #fff;
+}
+
+.board > [data-status="hidden"] {
+  background-color: #c0c0c0;
+  cursor: pointer;
+}
+
+.board > [data-status="mine"] {
+  background-color: red;
+}
+
+.board > [data-status="number"] {
+  background-color: #d3d3d3;
+}
+
+.board > [data-status="marked"] {
+  background-color: yellow;
+}
+
+select,
+button {
+  margin: 10px;
+  padding: 5px 10px;
 }
