@@ -9,16 +9,30 @@
   </head>
   <body>
     <h3 class="title">Minesweeper</h3>
-    <div class="subtext">Mines Left: <span data-mine-count></span></div>
-    <div class="subtext">
-      <span data-timer>Time: 0s</span>
+    <div class="game-info">
+      <div class="subtext">Mines Left: <span data-mine-count></span></div>
+      <div class="subtext">
+        <span data-timer>Time: 0s</span>
+      </div>
     </div>
-    <select data-difficulty>
-      <option value="Easy">Easy</option>
-      <option value="Medium">Medium</option>
-      <option value="Hard">Hard</option>
-    </select>
-    <button data-reset>Reset</button>
+    <div class="controls">
+      <select data-difficulty>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+      <button data-reset>Reset</button>
+      <button data-hint>Hint</button>
+    </div>
+
     <div class="board"></div>
+    <div class="leaderboard">
+      <h4>Leaderboard</h4>
+      <ul data-leaderboard></ul>
+    </div>
+
+    <button id="play-sound">Play Sound</button>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>

@@ -21,6 +21,18 @@ let timeElapsed = 0;
 let isFirstClick = true;
 let isGameOver = false;
 
+// sound implementation
+import clicksrc from "./sounds/click.mp3"; // Correct path
+import marksrc from "./sounds/mark.mp3"; // Correct path
+import winsrc from "./sounds/win.mp3"; // Correct path
+import losesrc from "./sounds/lose.mp3"; // Correct path
+
+const clickSound = new Audio(clicksrc);
+// const clickSound = new Audio("./sounds/click.mp3");
+const markSound = new Audio(marksrc);
+const winSound = new Audio(winsrc);
+const loseSound = new Audio(losesrc);
+
 const boardElement = document.querySelector(".board");
 const minesLeftText = document.querySelector("[data-mine-count]");
 const messageText = document.querySelector(".subtext");
@@ -34,6 +46,15 @@ difficultySelect.addEventListener("change", startGame);
 resetButton.addEventListener("click", resetGame);
 hintButton.addEventListener("click", giveHint);
 
+clickSound.load();
+markSound.load();
+winSound.load();
+loseSound.load();
+// console.log(clickSound.play());
+// const sound = clickSound.play().catch((error) => {
+//   console.error("Error playing click sound:", error);
+// });
+// console.log(sound);
 function startGame() {
   const difficulty = difficultySelect.value;
   const { size, mines } = boardSizes[difficulty];
@@ -89,7 +110,7 @@ boardElement.addEventListener("contextmenu", handleTileRightClick);
 
 function handleTileClick(e) {
   if (isGameOver || !e.target.matches("[data-status]")) return;
-
+  clickSound.play(); // Play the click sound
   const tile = {
     x: parseInt(e.target.dataset.x),
     y: parseInt(e.target.dataset.y),
@@ -108,6 +129,8 @@ function handleTileRightClick(e) {
   if (isGameOver || !e.target.matches("[data-status]")) return;
 
   e.preventDefault();
+  markSound.play(); // Play the mark sound
+
   board = markTile(board, {
     x: parseInt(e.target.dataset.x),
     y: parseInt(e.target.dataset.y),
@@ -154,11 +177,13 @@ function checkGameEnd() {
 
     if (win) {
       messageText.textContent = "You Win";
+      winSound.play(); // Play the win sound
       updateLeaderboard(difficultySelect.value, timeElapsed);
       displayLeaderboard(difficultySelect.value);
     }
     if (lose) {
       messageText.textContent = "You Lose";
+      loseSound.play(); // Play the lose sound
       board.forEach((row) => {
         row.forEach((tile) => {
           if (tile.status === TILE_STATUSES.MARKED)
@@ -241,3 +266,10 @@ function displayLeaderboard(difficulty) {
 }
 
 startGame();
+import clickSoundSrc from "./sounds/click.mp3"; // Correct path
+
+const clickSounds = new Audio(clickSoundSrc);
+
+document.getElementById("play-sound").addEventListener("click", () => {
+  clickSounds.play();
+});
