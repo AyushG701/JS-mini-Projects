@@ -25,7 +25,7 @@ A simple Minesweeper game built with JavaScript. The game allows users to uncove
   <li><input type="checkbox" checked disabled> Difficulty levels (Easy, Medium, Hard) that change the board size and number of mines</li>
   <li><input type="checkbox" checked disabled> Game sounds for marking, revealing, winning, or losing</li>
 </ul>
-
+ link to the repo https://mineswipper-lmy72etyw-ayushg701s-projects.vercel.app/
 ## Getting Started
 
 1. Clone the repository:
