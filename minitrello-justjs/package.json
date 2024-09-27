@@ -1,0 +1,19 @@
+{
+  "name": "current-project-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
